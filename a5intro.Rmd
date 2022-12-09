@@ -1,0 +1,53 @@
+---
+title: "intro"
+output: html_document
+date: "2022-12-05"
+---
+## Introduction
+
+#### For this assignment, I explored different countries and their outputs of cumulative CO2.
+
+Some questions I wanted to answer with my interactive graph were: 
+
+1. How do different countries compare with one another on the same scale?
+2. Where is the cumulative CO2 production the highest / lowest?
+3. How has the production changed throughout the years and during specific years?
+
+With the _*owid CO2*_ data, I picked out three specific variables: **Year**, **Country**, and **Cumulative CO2 Production**.
+The years of observation is between 1990 and 2018 from dozens of different countries to compare. The CO2 productions is based on production based emissions excluding the land use and is measured in million tonnes. 
+
+### For some more insight, below are calculated values of specific variables : 
+```{r, include = FALSE}
+source("./a5server.R")
+```
+
+
+#### Country with the highest emission in 2000
+```{r, echo = FALSE}
+highest <- new_data %>% 
+  filter(year == "2000") %>% 
+  filter(country != "World") %>% 
+  filter(cumulative_co2 == max(cumulative_co2)) %>% 
+  pull(country)
+print(highest)
+```
+
+#### The most total accumulated emission amount
+```{r, echo = FALSE}
+accum <- new_data %>% 
+  group_by(country) %>% 
+  summarise(cumulative_co2 = sum(cumulative_co2)) %>% 
+  filter(cumulative_co2 == max(cumulative_co2)) %>% 
+  pull(cumulative_co2)
+print(accum)
+```
+
+#### United States change in production every year
+```{r, echo = FALSE}
+change <- new_data %>% 
+  filter(country == "United States") %>% 
+  arrange(year) %>% 
+  mutate (new_production= cumulative_co2 - lag(cumulative_co2, default = first(cumulative_co2)))
+print(change)
+```
+
