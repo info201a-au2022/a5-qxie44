@@ -1,7 +1,7 @@
 library(plotly)
 library(markdown)
 library(shiny)
-
+library(tidyr)
 
 introduction_page <-tabPanel(
   "Introduction",
@@ -45,7 +45,7 @@ interactive <- tabPanel(
       mainPanel(plotlyOutput("cum_co2"))
   ),
   print("Through this visualization, we can see how some countries produce darastically much more carbon dioxide than others
-        with the addition of exponential growtn in the recent decades.")
+        with the addition of exponential growth in the recent decades.")
 )
 
 ui <- navbarPage(

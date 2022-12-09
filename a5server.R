@@ -3,6 +3,7 @@ library(tidyverse)
 library(dplyr)
 library(ggplot2)
 library(plotly)
+library(tidyr)
 
 data <- read.csv("owid-co2-data.csv")
 
