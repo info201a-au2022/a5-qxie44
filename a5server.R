@@ -12,19 +12,21 @@ new_data <- data %>%
   select(year, country, cumulative_co2) %>% 
   as.data.frame()
 
+#Takes input values from UI and filters data depending on input
 server <- function(input, output) {
-  population_trends_data <- reactive({
+  co2_data <- reactive({
     new_data %>% 
       filter(country %in% input$country,
              year %in% c(input$year[1]:input$year[2]))
   })
   
+#output of barplot
   output$cum_co2<- renderPlotly({
-    ggplotly(ggplot(population_trends_data(), 
+    ggplotly(ggplot(co2_data(), 
                     aes(x=year, y=cumulative_co2, color = country)) + 
-                                                     geom_line() + 
-                                                     ggtitle("Cumulative Co2 Trends") +
-                                                     labs(y = "Total Cumulative Carbon Dioxide Emission (Million Tonnes)")) 
+                    geom_line() + 
+                    ggtitle("Cumulative Co2 Trends") +
+                    labs(y = "Total Cumulative Carbon Dioxide Emission (Million Tonnes)")) 
   })
   
 }

@@ -20,7 +20,7 @@ new_data <- data %>%
 unique_country <- new_data %>% 
   distinct(country)
 
-
+# value input
 interactive <- tabPanel(
   "Interactive", 
   titlePanel("Countries Cummulative CO2 Output"), 
@@ -30,8 +30,7 @@ interactive <- tabPanel(
           inputId = "country", 
           label = "Select a Country", 
           choices = unique_country$country,
-          selected = "Austria",
-          multiple = TRUE
+          selected = "Austria"
         ),
         
         sliderInput("year",
@@ -44,10 +43,11 @@ interactive <- tabPanel(
         
       mainPanel(plotlyOutput("cum_co2"))
   ),
-  print("Through this visualization, we can see how some countries produce darastically much more carbon dioxide than others
-        with the addition of exponential growth in the recent decades.")
+  print("Through this visualization, we can see how some countries produce darastically much more carbon dioxide than others looking
+       at the scaling of each outry with the addition of continuous growth pattern for every country.")
 )
 
+#tab bar
 ui <- navbarPage(
   "Assignment 5",
   introduction_page,
