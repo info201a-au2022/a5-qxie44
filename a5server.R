@@ -25,8 +25,8 @@ server <- function(input, output) {
     ggplotly(ggplot(co2_data(), 
                     aes(x=year, y=cumulative_co2)) + 
                     geom_line() + 
-                    ggtitle("Cumulative Co2 Trends") +
-                    labs(y = "Total Cumulative Carbon Dioxide Emission (Million Tonnes)")) 
+                    labs(y = "Total Cumulative Carbon Dioxide Emission (Million Tonnes)",
+                         title = "Cumulative Co2 Trends")) 
   })
   
 }
