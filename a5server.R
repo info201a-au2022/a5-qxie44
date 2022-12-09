@@ -20,10 +20,10 @@ server <- function(input, output) {
              year %in% c(input$year[1]:input$year[2]))
   })
   
-#output of barplot
+#output of line plot with specific countries and chosen year range
   output$cum_co2<- renderPlotly({
     ggplotly(ggplot(co2_data(), 
-                    aes(x=year, y=cumulative_co2, color = country)) + 
+                    aes(x=year, y=cumulative_co2)) + 
                     geom_line() + 
                     ggtitle("Cumulative Co2 Trends") +
                     labs(y = "Total Cumulative Carbon Dioxide Emission (Million Tonnes)")) 

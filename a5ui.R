@@ -26,7 +26,7 @@ interactive <- tabPanel(
   titlePanel("Countries Cummulative CO2 Output"), 
   sidebarLayout(
       sidebarPanel(
-        selectizeInput(
+        selectInput(
           inputId = "country", 
           label = "Select a Country", 
           choices = unique_country$country,
@@ -34,7 +34,7 @@ interactive <- tabPanel(
         ),
         
         sliderInput("year",
-                    "Timeframe",
+                    "Timeline",
                     min = 1990,
                     max = 2018,
                     value = c(1990, 2018),
